@@ -3,7 +3,7 @@ require('dotenv').config()
 const jwt = require('jsonwebtoken')
 
 module.exports = (req, res, next) => {
-    // const authHeader = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6ImFkZWdva2VhYmR1bGF6ZWV6NjUzQGdtYWlsLmNvbSIsInVzZXJJZCI6IjYxNjcyNzljMGQyMDAyZDZjZWUzY2I5YSIsImlhdCI6MTYzNDQ4MTgxOCwiZXhwIjoxNjM0NDg1NDE4fQ.l4zFT4JTFlhA5kCbQxzOFVMG5_wZ-o9Zf5cXExExwcE'
+    // const authHeader = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6ImFkZWdva2VhYmR1bGF6ZWV6NjUzQGdtYWlsLmNvbSIsInVzZXJJZCI6IjYxNjcyNzljMGQyMDAyZDZjZWUzY2I5YSIsImlhdCI6MTYzNDU2MjkxMCwiZXhwIjoxNjM0NTY2NTEwfQ.QXciCekDdqs6rCrZ0iSw8ZDZ5IugfImTrnUQ6ptH_2s'
     const authHeader = req.get('Authorization')
     if (!authHeader) {
         req.isAuth = false

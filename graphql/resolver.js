@@ -144,6 +144,26 @@ module.exports = {
         return { posts: posts.map( p => {
             return { ...p._doc, postId: p._id.toString(), createdAt: p.createdAt.toISOString(), updatedAt: p.updatedAt.toISOString()}
         }), totalPosts: totalPosts }
+    },
+    post: async function({ id }, req) {
+        if (req.isAuth === false) {
+            const error = new Error("Not authenticated.")
+            error.code = 401
+            throw error
+        }
+        const post = await Post.findById(id)
+                        .populate('creator')
+        if (!post) {
+            const error = new Error("No post found.")
+            error.code = 401
+            throw error
+        }
+        return {
+            ...post._doc,
+            _id: post._id.toString(), 
+            createdAt: post.createdAt.toISOString(), 
+            updatedAt: post.updatedAt.toISOString()
+        }
     }
 }
 
