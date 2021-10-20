@@ -31,7 +31,7 @@ const storage = multer.diskStorage({
         cb(null, 'images');
     },
     filename: function (req, file, cb) {
-        cb(null, new Date().toISOString().replace(/:/g, '-') + '-' + file.originalname)
+        cb(null, uuidv4())
     }
 });
 
@@ -56,9 +56,8 @@ app.use((req, res, next) => {
     next();
 });
 
-app.use(cors())
-
 app.use(auth)
+app.use(cors())
 
 app.put('/post-image', (req, res, next) => {
     if (req.isAuth === false) {
